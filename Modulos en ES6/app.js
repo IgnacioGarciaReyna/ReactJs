@@ -1,14 +1,8 @@
-//Para importar dos variables de un archivo, se utiliza una coma para separarlos dentro de las llaves.
-//En este caso exportamos nombreTarea que es un string y crearTarea que es una función
+//Exportando clases
 
-import { nombreTarea, crearTarea, tareaCompletada } from "./tareas.js";
+import Tarea from "./tareas.js";
 
-console.log(nombreTarea);
-
-//Se le pasan argumentos a crearTarea
-const tarea1 = crearTarea("Pasear al perro", "Media");
+const tarea1 = new Tarea("Aprender JavaScript", "Urgente");
 
 console.log(tarea1);
-
-//Se llama la función directamente
-tareaCompletada();
+tarea1.mostrar();
