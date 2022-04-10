@@ -1,21 +1,14 @@
-//Se utiliza export para que nombreTarea pueda ser utilizado en otro archivo .js
-//Cuando se ejecuta app.js, si solo se importa nombreTarea, en el archivo tareas.js solo se lee la linea donde se exporta nombreTarea
 export const nombreTarea = "Pasear al perro";
 
-// //Se puede exportar como:
-// const nombreTarea = "Pasear al perro";
-// export default nombreTarea;
-//Pero solo es un "export default" por archivo
-//En React se exporta mucho por "default" un componente, pero también se exportan funciones.
-//Cuando importas un "default" no es necesario usar llaves {}
+//Exportar una funcion
+export const crearTarea = (tarea, urgencia) => {
+  return `La tarea ${tarea} tiene una urgencia de ${urgencia}`;
+};
 
-//Si querés exportar multiples valores por default podes hacerlo con un objeto
-// const nombreTarea = "Pasear al perro";
-// const tarea = "tarea";
-// export default {
-//   nombre: nombreTarea,
-//   tarea: tarea,
-// };
+//Multiples funciones
+export const tareaCompletada = () => {
+  console.log("La tarea se completo");
+};
 
 class Tarea {
   constructor(nombre, prioridad) {
