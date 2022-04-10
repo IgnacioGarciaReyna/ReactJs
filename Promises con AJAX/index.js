@@ -36,8 +36,31 @@ const descargarUsuarios = (cantidad) =>
   });
 
 //Le pasamos a descargarUsuarios la cantidad de usuarios
-descargarUsuarios(20).then(
+descargarUsuarios(30).then(
   //Miembros son los usuarios
-  (miembros) => console.log(miembros),
+  (miembros) => imprimirHTML(miembros),
   (error) => console.error(new Error("Hubo un error" + error))
 );
+
+
+
+function imprimirHTML(usuarios) {
+  let html = "";
+  //Como usuarios es un arreglo lo recorremos con forEach()
+  //con usuario nos referimos a cada uno de ellos
+  usuarios.forEach((usuario) => {
+    //Por cada usuario concatenamos lo siguiente a html
+    //Se utilizan las llaves de la interfaz que trae la API (Por ejemplo: name.first)
+    html += `
+    <li>
+      Nombre: ${usuario.name.first} ${usuario.name.last}
+      Pais: ${usuario.nat}
+      Imagen: <img src="${usuario.picture.medium}">
+    </li>
+    `;
+  });
+
+  //#app es el id de un div en el documento html
+  const contenedorApp = document.querySelector("#app");
+  contenedorApp.innerHTML = html;
+}
