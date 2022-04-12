@@ -4,7 +4,9 @@
 
 import React from "react";
 
-function App() {
+
+//Los componentes pueden funcionar siendo function declaration (caso header) o también siendo function expression (como el footer).
+function Header() {
 
   const edad = 18;
 
@@ -34,4 +36,4 @@ function App() {
     );
 }
 
-export default App;
+export default Header;
