@@ -7,6 +7,9 @@ import Producto from "./components/Producto";
 //El state basicamente sirve para controlar si un usuario está autenticado, los registros que puede haber o también para un formulario, por ejemplo, cuando lo va llenando.
 //Vamos a crear un segundo state
 function App() {
+  //Cuando usas useState, podes ver que tenemos dos funciones o bueno en este caso tenemos dos states, pero hay dos funciones, guardarProducto y agregarProducto. Cuando utilizas useState las nombras como quieras. 
+  //Lo que va a hacer nuestra función es modificar el state. En React, el state no se puede igualar a otra variable, no se puede hacer un push. Se debe modificar con las funciones.
+  //Pregunta de entrevista: El state se puede modificar directamente? La respuesta es no, se usa la función que extraes de useState o si es un class component había una función que se llamaba setState.
   const [productos, guardarProductos] = useState([
     { id: 1, nombre: "Camisa ReactJS", precio: 50 },
     { id: 2, nombre: "Camisa VueJs", precio: 40 },
@@ -15,10 +18,6 @@ function App() {
     ,
   ]);
 
-  //State para Carrito de compras
-  //También va a ser un arreglo, pero va a inciar vacio.
-  //Entre llaves se pasa el valor inicial, en este caso un arreglo vacio.
-  //Como es array destructuring, en los corchetes ponemos primero "carrito", que es la referencia al string vacio, y segundo una función que se encarga de interactuar con el, que va a agregar nuevos registros o los va a eliminar.
   const [ carrito, agregarProducto ] = useState([]);
 
   const fecha = new Date().getFullYear();
@@ -29,14 +28,10 @@ function App() {
 
       <h1>Lista de productos</h1>
 
-      {/* Le pasamos el carrito y la función al producto.
-      Usualmente se nombra a los props igual que los valores que estoy pasando. 
-      Para que quede mas ordenado, se pasan arriba los states y abajo las funciones.*/}
       {productos.map((producto) => (
         <Producto 
           key={producto.id} 
           producto={producto}
-          // Pasamos el array de productos para poder hacer el filter en Producto.js
           productos = {productos}
           carrito = {carrito}
 
