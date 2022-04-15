@@ -1,23 +1,27 @@
 import React from "react";
 
-const Producto = ({ producto }) => {
+//Acá estamos extrayendo el producto, pero también vamos a extraer el carrito y también la función de agregarProducto.
+//Para poder hacer el filter en la función seleccionar producto, tuvimos que pasar como prop el array "productos".
+const Producto = ({ producto, carrito, agregarProducto, productos }) => {
   const { nombre, precio, id } = producto;
 
-  //Agregar producto al carrito
-  //Como solo se pasa un parametro, se pueden eliminar los parentesis para que el código sea un poco mas corto.
-  const seleccionarProducto = id => {
-    console.log("Comprando...", id);
+  //Nosotros queremos que cuando pasamos un id, se seleccionen todas las otras propiedades del producto (nombre y precio). Esto lo vamos a hacer con el array method .filter
+  const seleccionarProducto = (id) => {
+    //Creamos const producto que va a ser todo el objeto del producto.
+    //Filter nos crea un arreglo en lugar de un objeto.
+    //Requerimos todo el arreglo de productos para pasarle el id y que nos devuelva el producto buscado. Por lo tanto debemos pasarlo desde App.js como un prop.
+    //Filter es similar al map, también va a iterar en cada uno de los registros, por lo tanto, entre parentesis hacemos una arrow function que funcionara con cada uno de los valores del array.
+    //Filter devuelve un arreglo nuevo con el producto que cumpla la condición.
+    //Ahora, como devuelve un array y nosotros queremos un objeto, podemos obtenerlo de dos formas. Uno es poniendo [0] despues del filter y otra ponerlo mas adelante, por ejemplo dentro del console.log. Necesitamos que sea un objeto, para poder agregarlo al carrito, que es un array de objetos, no de arrays.
+
+    const producto = productos.filter((producto) => producto.id == id)[0];
+    console.log(producto);
   };
 
   return (
     <div>
       <h2>{nombre}</h2>
       <p>$ {precio}</p>
-      {/* Agregamos un boton "Agregar al carrito" 
-          React maneja lo botones de forma distinta a JS tradicional.
-          En JS le colocas un id y escribirias un getById o QuerySelector y le agregarías un eventListenner
-          En React ya tenes una gran cantidad de eventos. Se agrega el prefijo on.
-          Al onClik le podes agregar la palabra function directamente entre llaves, sin embargo, vamos a esperar a que el usuario dé click, por lo tanto tiene que ser una arrow function. Si colocas "function" y lo mandas a llamar es prácticamente un llamado a una función, se va a ejecutar automáticamente.*/}
       <button type="button" onClick={() => seleccionarProducto(id)}>
         Comprar
       </button>
@@ -26,8 +30,3 @@ const Producto = ({ producto }) => {
 };
 
 export default Producto;
-
-
-//Lo importante es como React maneja los eventos.
-//Se agrega un on y el nombre del evento, en este caso un click. 
-//Usualmente será con una arrow function o con una función directamente.
