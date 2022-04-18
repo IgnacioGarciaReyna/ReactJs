@@ -38,6 +38,8 @@ function App() {
       <Carrito
         //Para poder ver los productos seleccionados le tenemos que pasar al componente el array "carrito"
         carrito={carrito}
+        //Le pasamos la función agregar producto a carrito.js, para posteriormente pasarsela a producto.sj.
+        agregarProducto={agregarProducto}
       />
 
       <Footer fecha={fecha} />
